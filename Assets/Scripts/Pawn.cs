@@ -9,4 +9,5 @@ public abstract class Pawn : MonoBehaviour
     public abstract void Move(Vector3 moveDirection);
     public abstract void DodgeRoll();
     public abstract void Rotate(float rotationAngle);
+    public abstract void RotateToLookAt(Vector3 pointToLookAt);
 }

@@ -32,4 +32,16 @@ public class PawnRootMotion : Pawn
     {
         transform.Rotate(0.0f, rotationAngle * rotationSpeed * Time.deltaTime, 0.0f);
     }
+
+    public override void RotateToLookAt(Vector3 targetPoint)
+    {
+            // Find the vector from our position to the target point
+            Vector3 lookVector = targetPoint - transform.position;
+
+            // Find the rotation that will look down that vector with world up being the up direction
+            Quaternion lookRotation = Quaternion.LookRotation(lookVector, Vector3.up);
+
+            // Rotate slightly towards that target rotation
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
+    }
 }
