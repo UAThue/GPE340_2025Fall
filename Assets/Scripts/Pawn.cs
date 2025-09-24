@@ -7,6 +7,7 @@ public abstract class Pawn : MonoBehaviour
     public float rotationSpeed;
 
     public abstract void Move(Vector3 moveDirection);
+    public abstract void MoveTo(Vector3 moveTarget);
     public abstract void DodgeRoll();
     public abstract void Rotate(float rotationAngle);
     public abstract void RotateToLookAt(Vector3 pointToLookAt);

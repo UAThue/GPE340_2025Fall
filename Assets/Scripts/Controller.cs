@@ -9,4 +9,11 @@ public abstract class Controller : MonoBehaviour
         pawnToPossess.controller = this;
         pawn = pawnToPossess;
     }
+
+    public virtual void UnPossess()
+    {
+        pawn.controller = null;
+        pawn = null;
+    }
+
 }
