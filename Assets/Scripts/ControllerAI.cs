@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class ControllerAI : Controller
 {
-    private NavMeshAgent agent;
+    [HideInInspector] public NavMeshAgent agent;
     public Transform targetTransform;
     public float stoppingDistance = 1.0f;
 
@@ -16,7 +16,10 @@ public class ControllerAI : Controller
         }
     }
 
-    // Update is called once per frame
+
+    /// <summary>
+    /// Update is called once per frame 
+    /// </summary>
     void Update()
     {
         // If we don't have a pawn, we can't make decisions for it, so do nothing
@@ -31,6 +34,8 @@ public class ControllerAI : Controller
         // Find the velocity that the agent wants to move in order to follow the path
         Vector3 desiredVelocity = agent.desiredVelocity;
 
+        desiredVelocity = pawn.transform.InverseTransformDirection(desiredVelocity);
+
         // Send the direction in to our Move function (use the move function to add speed)
         pawn.Move(desiredVelocity.normalized);
 
@@ -38,7 +43,10 @@ public class ControllerAI : Controller
         pawn.RotateToLookAt(targetTransform.position);
     }
 
-
+    /// <summary>
+    /// Possesses a pawn, adding the required elements for AI Navigation
+    /// </summary>
+    /// <param name="pawnToPossess">The Pawn to Possess</param>
     public override void Possess(Pawn pawnToPossess)
     {
         // Run the Possess from the parent class

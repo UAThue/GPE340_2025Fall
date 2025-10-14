@@ -73,5 +73,25 @@ public class ControllerPlayer : Controller
         {
             pawn.DodgeRoll();
         }
+
+        // Handle weapon inputs
+        if (Input.GetButtonDown("Fire1"))
+        {
+            pawn.weapon.onTriggerPressed.Invoke();
+        } 
+        if (Input.GetButtonUp("Fire1"))
+        {
+            pawn.weapon.onTriggerReleased.Invoke();
+        }
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            pawn.weapon.onAltFirePressed.Invoke();
+        }
+        if (Input.GetButtonUp("Fire2"))
+        {
+            pawn.weapon.onAltFireReleased.Invoke();
+        }
+
     }
 }
